@@ -3,11 +3,11 @@ import javax.persistence.ManyToOne
 import java.time.OffsetDateTime
 
 @Entity
-data class Video (
-        @ManyToOne
+class Video (
+        @ManyToOne(fetch = FetchType.LAZY)
         val user: User,
         val fileUrl: String,
         val createdAt: OffsetDateTime = OffsetDateTime.now(),
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long = 0
+        val id: Long? = null
 )

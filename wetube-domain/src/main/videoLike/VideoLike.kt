@@ -2,9 +2,9 @@ import javax.persistence.Entity
 import javax.persistence.ManyToOne
 
 @Entity
-data class VideoLike (
-        @ManyToOne
+class VideoLike (
+        @ManyToOne(fetch = FetchType.LAZY)
         val user: User,
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         val video: Video,
 )

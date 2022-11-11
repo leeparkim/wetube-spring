@@ -1,0 +1,3 @@
+enum class SocialType {
+    GOOGLE
+}

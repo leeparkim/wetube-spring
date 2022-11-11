@@ -3,16 +3,12 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 
-enum class SocialType {
-    GOOGLE
-}
-
 @Entity
-data class User (
-        val profileUrl: String,
+class User (
+        val profileUrl: String?,
         val username: String,
         val socialId: String,
-        val socialType: SocialType,
+        @Enumerated(EnumType.STRING) val socialType: SocialType,
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long = 0
+        val id: Long? = null
 )

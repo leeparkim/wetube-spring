@@ -3,9 +3,9 @@ import javax.persistence.ManyToOne
 import java.time.OffsetDateTime
 
 @Entity
-data class Subscription (
-        @ManyToOne
+class Subscription (
+        @ManyToOne(fetch = FetchType.LAZY)
         val follower: User,
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         val following: User,
 )
