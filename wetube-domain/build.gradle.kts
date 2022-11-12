@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
