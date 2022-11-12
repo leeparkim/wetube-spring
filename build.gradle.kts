@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
+    id("com.google.cloud.tools.jib") version "3.2.1"
 }
 
 allprojects {
@@ -16,9 +17,15 @@ allprojects {
 
 subprojects {
     apply {
-        plugin("java")
-        plugin("io.spring.dependency-management")
-        plugin("org.springframework.boot")
+        apply(plugin = "org.springframework.boot")
+        apply(plugin = "io.spring.dependency-management")
+        apply(plugin = "java-library")
+        apply(plugin = "kotlin")
+        apply(plugin = "kotlin-jpa")
+        apply(plugin = "kotlin-spring")
+        apply(plugin = "kotlin-kapt")
+        apply(plugin = "com.google.cloud.tools.jib")
+        apply(plugin = "application")
     }
 
     group = "com.leeparkim"
