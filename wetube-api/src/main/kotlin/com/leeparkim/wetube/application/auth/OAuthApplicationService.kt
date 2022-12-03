@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service
 @Service
 class OAuthApplicationService(var googleOauth: GoogleOauth) {
 
-    fun getSocialAuth(socialLoginType: SocialType?): SocialOauth {
-        val socialOauth: SocialOauth = when (socialLoginType) {
-            SocialType.GOOGLE -> GoogleOauth()
+    fun getSocialAuth(socialLoginType: String): SocialOauth {
+        val socialOauth: SocialOauth = when (SocialType.valueOf(socialLoginType.uppercase())) {
+            SocialType.GOOGLE -> googleOauth
             else -> {
                 throw IllegalArgumentException("알 수 없는 소셜 로그인 형식입니다.")
             }
@@ -18,9 +18,15 @@ class OAuthApplicationService(var googleOauth: GoogleOauth) {
         return socialOauth
     }
 
-    fun getRedirectUrl(socialLoginType: SocialType?): String {
-        val socialOauth = getSocialAuth(socialLoginType);
-        val redirectURL: String = socialOauth.getOauthRedirectURL();
-        return redirectURL;
+    fun getRedirectUrl(socialLoginType: String): String {
+        val socialOauth = getSocialAuth(socialLoginType)
+        val redirectURL: String = socialOauth.getOauthRedirectURL()
+        return redirectURL
+    }
+
+    fun findSocialUserId(socialLoginType: String, code: String): String? {
+        val socialOauth = getSocialAuth(socialLoginType)
+        val accessToken = socialOauth.getAccessToken(code) ?: return null
+        return socialOauth.getSocialUserId(accessToken)
     }
 }

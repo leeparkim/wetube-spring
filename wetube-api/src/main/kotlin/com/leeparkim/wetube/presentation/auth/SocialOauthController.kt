@@ -14,10 +14,15 @@ class SocialOauthController(private val oAuthService: OAuthApplicationService) {
 
     @GetMapping("/signin/social/{socialType}/form")
     fun socialLoginRedirect(@PathVariable(name="socialType") socialTypeString: String): String {
-        val socialType = SocialType.valueOf(socialTypeString.uppercase());
-        val redirectUrl = oAuthService.getRedirectUrl(socialType);
+        val redirectUrl = oAuthService.getRedirectUrl(socialTypeString);
 
-        return "redirect:$redirectUrl";
+        return "redirect:$redirectUrl"
     }
 
+    @ResponseBody
+    @GetMapping("/signin/social/{socialType}/form/callback")
+    fun socialCallback(@PathVariable(name="socialType") socialTypeString: String, code: String): String? {
+        val userId = oAuthService.findSocialUserId(socialTypeString, code)?: return null
+        return userId
+    }
 }
