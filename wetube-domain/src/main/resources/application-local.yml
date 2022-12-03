@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/wetube
+    username: root
+    password: ENC(vCnJt1wfQhINh+pT6ubGhAUR8eDBlg1AFMI9qOOiRbYFL5LimwLzHVBf5VZbxE//)
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+logging.level:
+  org.hibernate.SQL: debug
+    #  org.hibernate.type: trace
