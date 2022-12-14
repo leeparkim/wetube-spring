@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class OAuthApplicationService(var googleOauth: GoogleOauth) {
+class OAuthApplicationService(val googleOauth: GoogleOauth) {
 
     fun getSocialAuth(socialLoginType: String): SocialOauth {
         val socialOauth: SocialOauth = when (SocialType.valueOf(socialLoginType.uppercase())) {
@@ -20,8 +20,7 @@ class OAuthApplicationService(var googleOauth: GoogleOauth) {
 
     fun getRedirectUrl(socialLoginType: String): String {
         val socialOauth = getSocialAuth(socialLoginType)
-        val redirectURL: String = socialOauth.getOauthRedirectURL()
-        return redirectURL
+        return socialOauth.getOauthRedirectURL()
     }
 
     fun findSocialUserId(socialLoginType: String, code: String): String? {

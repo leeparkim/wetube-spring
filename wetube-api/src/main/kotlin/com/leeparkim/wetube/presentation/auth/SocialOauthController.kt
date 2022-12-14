@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 class SocialOauthController(private val oAuthService: OAuthApplicationService) {
 
     @GetMapping("/signin/social/{socialType}/form")
-    fun socialLoginRedirect(@PathVariable(name="socialType") socialTypeString: String): String {
+    fun socialLoginRedirect(@PathVariable(name = "socialType") socialTypeString: String): String {
         val redirectUrl = oAuthService.getRedirectUrl(socialTypeString);
 
         return "redirect:$redirectUrl"
@@ -21,8 +21,7 @@ class SocialOauthController(private val oAuthService: OAuthApplicationService) {
 
     @ResponseBody
     @GetMapping("/signin/social/{socialType}/form/callback")
-    fun socialCallback(@PathVariable(name="socialType") socialTypeString: String, code: String): String? {
-        val userId = oAuthService.findSocialUserId(socialTypeString, code)?: return null
-        return userId
+    fun socialCallback(@PathVariable(name = "socialType") socialTypeString: String, code: String): String {
+        return oAuthService.findSocialUserId(socialTypeString, code) ?: throw IllegalStateException("User not found")
     }
 }

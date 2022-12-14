@@ -7,8 +7,8 @@ import javax.persistence.Enumerated
 
 @Entity
 class User(
-    val profileUrl: String?,
-    val username: String,
-    val socialId: String,
-    @Enumerated(EnumType.STRING) val socialType: SocialType,
+        val profileUrl: String?,
+        val username: String,
+        val socialId: String,
+        @Enumerated(EnumType.STRING) val socialType: SocialType,
 ) : BaseEntity()
