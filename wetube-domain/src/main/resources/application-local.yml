@@ -1,6 +1,7 @@
 spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/wetube
+    driver-class-name: org.h2.Driver
     username: root
     password: ENC(vCnJt1wfQhINh+pT6ubGhAUR8eDBlg1AFMI9qOOiRbYFL5LimwLzHVBf5VZbxE//)
   jpa:

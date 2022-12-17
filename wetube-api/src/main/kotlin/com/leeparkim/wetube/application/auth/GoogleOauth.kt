@@ -28,9 +28,8 @@ class GoogleOauth(
     companion object {
         const val GOOGLE_TOKEN_REQUEST_URL = "https://oauth2.googleapis.com/token"
         const val GOOGLE_USERINFO_REQUEST_URL = "https://www.googleapis.com/oauth2/v1/userinfo"
+        val mapper: ObjectMapper = ObjectMapper()
     }
-
-    private val mapper: ObjectMapper = ObjectMapper()
 
     data class GoogleOAuthToken(
             @JsonProperty("access_token") val accessToken: String?,
@@ -82,7 +81,7 @@ class GoogleOauth(
         return null
     }
 
-    override fun getSocialUserId(accessToken: String): String? {
+    override fun getSocialUserIdAndEmail(accessToken: String): Pair<String, String>? {
         val headers = HttpHeaders()
         headers.add("Authorization", "Bearer $accessToken")
 
@@ -95,7 +94,9 @@ class GoogleOauth(
                 String::class.java
         )
 
-        val (id) = mapper.readValue(response.body, GoogleUser::class.java)
-        return id
+        val (id, email) = mapper.readValue(response.body, GoogleUser::class.java)
+        if (id == null || email == null) return null
+
+        return Pair(id, email)
     }
 }
