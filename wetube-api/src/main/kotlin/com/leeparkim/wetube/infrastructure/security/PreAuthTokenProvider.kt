@@ -1,7 +1,6 @@
 package com.leeparkim.wetube.infrastructure.security
 
 import com.leeparkim.wetube.application.auth.TokenService
-import com.leeparkim.wetube.domain.exception.NotFoundException
 import com.leeparkim.wetube.domain.user.UserRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -30,7 +29,7 @@ class PreAuthTokenProvider : AuthenticationProvider {
             val token = authentication.getPrincipal() as String
             val user = jwtService.decode(token)
                     ?.let { userRepository.findByIdOrNull(it) }
-                    ?: throw NotFoundException("회원정보가 없습니다. token: $token")
+                    ?: throw IllegalAccessException("회원정보가 없습니다. token: $token")
             return UsernamePasswordAuthenticationToken(
                     user.id,
                     "",
