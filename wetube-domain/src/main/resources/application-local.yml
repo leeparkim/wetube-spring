@@ -4,6 +4,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: root
     password: ENC(vCnJt1wfQhINh+pT6ubGhAUR8eDBlg1AFMI9qOOiRbYFL5LimwLzHVBf5VZbxE//)
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -11,6 +12,10 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+  sql:
+    init:
+      mode: always
+
 logging.level:
   org.hibernate.SQL: debug
     #  org.hibernate.type: trace
