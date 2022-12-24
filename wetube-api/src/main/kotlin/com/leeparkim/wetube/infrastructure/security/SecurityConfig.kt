@@ -1,6 +1,8 @@
 package com.leeparkim.wetube.infrastructure.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.leeparkim.wetube.domain.ResultCode
+import com.leeparkim.wetube.presentation.ApiResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
@@ -48,12 +50,18 @@ class SecurityConfig(val objectMapper: ObjectMapper) {
                     log.debug("authenticationEntryPoint: {}, {}, {}", request, response, authException)
                     response.status = HttpStatus.UNAUTHORIZED.value()
                     response.contentType = MediaType.APPLICATION_JSON_VALUE
-
+                    objectMapper.writeValue(
+                            response.outputStream,
+                            ApiResponse.failure<Unit>(ResultCode.UNAUTHORIZED)
+                    )
                 }.accessDeniedHandler { request, response, accessDeniedException ->
                     log.debug("accessDeniedHandler: {}, {}, {}", request, response, accessDeniedException)
                     response.status = HttpStatus.FORBIDDEN.value()
                     response.contentType = MediaType.APPLICATION_JSON_VALUE
-
+                    objectMapper.writeValue(
+                            response.outputStream,
+                            ApiResponse.failure<Unit>(ResultCode.FORBIDDEN)
+                    )
                 }
         return http.build()
     }
