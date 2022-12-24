@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 
 class PreAuthTokenProvider : AuthenticationProvider {
     @Autowired
-    lateinit var userRepository: UserRepository;
+    lateinit var userRepository: UserRepository
 
     @Autowired
     lateinit var jwtService: TokenService<Long>
@@ -26,7 +26,7 @@ class PreAuthTokenProvider : AuthenticationProvider {
     override fun authenticate(authentication: Authentication): Authentication {
         log.debug("authentication: ${SecurityContextHolder.getContext().authentication}")
         if (authentication is PreAuthenticatedAuthenticationToken) {
-            val token = authentication.getPrincipal() as String
+            val token = authentication.getPrincipal() as String?
             val user = jwtService.decode(token)
                     ?.let { userRepository.findByIdOrNull(it) }
                     ?: throw IllegalAccessException("회원정보가 없습니다. token: $token")

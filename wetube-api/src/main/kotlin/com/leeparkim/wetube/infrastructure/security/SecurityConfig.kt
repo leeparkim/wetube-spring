@@ -1,11 +1,13 @@
 package com.leeparkim.wetube.infrastructure.security
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -21,7 +23,7 @@ import javax.servlet.http.HttpServletResponse
 
 @EnableWebSecurity
 @Configuration
-class SecurityConfig {
+class SecurityConfig(val objectMapper: ObjectMapper) {
 
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
@@ -44,16 +46,13 @@ class SecurityConfig {
                                             response: HttpServletResponse,
                                             authException: AuthenticationException? ->
                     log.debug("authenticationEntryPoint: {}, {}, {}", request, response, authException)
-//                    response.status = HttpStatus.UNAUTHORIZED.value()
-//                    response.contentType = MediaType.APPLICATION_JSON_VALUE
-                    response.sendError(HttpStatus.UNAUTHORIZED.value(), "Not authorized user")
+                    response.status = HttpStatus.UNAUTHORIZED.value()
+                    response.contentType = MediaType.APPLICATION_JSON_VALUE
 
                 }.accessDeniedHandler { request, response, accessDeniedException ->
                     log.debug("accessDeniedHandler: {}, {}, {}", request, response, accessDeniedException)
-                    response.sendError(HttpStatus.FORBIDDEN.value(), accessDeniedException?.message)
-
-//                    response.status = HttpStatus.FORBIDDEN.value()
-//                    response.contentType = MediaType.APPLICATION_JSON_VALUE
+                    response.status = HttpStatus.FORBIDDEN.value()
+                    response.contentType = MediaType.APPLICATION_JSON_VALUE
 
                 }
         return http.build()

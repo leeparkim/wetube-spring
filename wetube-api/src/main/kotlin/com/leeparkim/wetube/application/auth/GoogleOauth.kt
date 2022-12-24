@@ -97,6 +97,6 @@ class GoogleOauth(
         val (id, email) = mapper.readValue(response.body, GoogleUser::class.java)
         if (id == null || email == null) return null
 
-        return Pair(id, email)
+        return id to email
     }
 }

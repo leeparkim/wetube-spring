@@ -18,7 +18,7 @@ class TokenPreAuthFilter : AbstractPreAuthenticatedProcessingFilter() {
 
     private fun resolveToken(request: HttpServletRequest): String? {
         val bearerToken = request.getHeader(AUTHORIZATION_HEADER_NAME)
-        if (!StringUtils.hasText(bearerToken)) {
+        if (bearerToken == null || bearerToken == "") {
             return null
         }
         val matcher = BEARER_TOKEN_PATTERN.matcher(bearerToken)
