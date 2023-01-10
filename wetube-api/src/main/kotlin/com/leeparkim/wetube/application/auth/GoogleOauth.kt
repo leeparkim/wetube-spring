@@ -2,6 +2,8 @@ package com.leeparkim.wetube.application.auth
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.leeparkim.wetube.domain.user.SocialType
+import com.leeparkim.wetube.utils.mapToParam
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.*
 import org.springframework.stereotype.Component
@@ -53,9 +55,7 @@ class GoogleOauth(
                 "response_type" to "code"
         )
 
-        val params = paramsMap.map { (key, value) ->
-            "$key=$value"
-        }.joinToString("&")
+        val params = mapToParam(paramsMap)
 
         return "$GOOGLE_SNS_LOGIN_URL?$params"
     }
@@ -98,5 +98,9 @@ class GoogleOauth(
         if (id == null || email == null) return null
 
         return id to email
+    }
+
+    override fun getType(): SocialType {
+        return SocialType.GOOGLE
     }
 }

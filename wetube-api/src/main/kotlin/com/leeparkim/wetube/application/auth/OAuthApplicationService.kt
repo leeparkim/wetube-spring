@@ -4,23 +4,19 @@ import com.leeparkim.wetube.domain.user.SocialType
 import com.leeparkim.wetube.domain.user.User
 import com.leeparkim.wetube.domain.user.UserRepository
 import com.leeparkim.wetube.presentation.auth.dto.SignInResponseDTO
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import javax.inject.Provider
 
 
 @Service
-class OAuthApplicationService(val googleOauth: GoogleOauth,
-                              val userRepository: UserRepository,
-                              val tokenService: TokenService<Long>) {
+class OAuthApplicationService(
+        val socialOauthProvider: SocialOauthProvider,
+        val userRepository: UserRepository,
+        val tokenService: TokenService<Long>) {
 
     fun getSocialAuth(socialLoginType: String): SocialOauth {
-        val socialOauth: SocialOauth = when (SocialType.valueOf(socialLoginType.uppercase())) {
-            SocialType.GOOGLE -> googleOauth
-            else -> {
-                throw IllegalArgumentException("알 수 없는 소셜 로그인 형식입니다.")
-            }
-        }
-
-        return socialOauth
+        return socialOauthProvider.getSocialOauth(SocialType.GOOGLE)
     }
 
     fun getRedirectUrl(socialLoginType: String): String {
