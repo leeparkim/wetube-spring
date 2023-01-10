@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne
 
 @Entity
 class Video(
-    @ManyToOne(fetch = FetchType.LAZY)
-    val user: User,
-    val fileUrl: String,
+        @ManyToOne(fetch = FetchType.LAZY)
+        val user: User,
+        val fileUrl: String,
 ) : BaseEntity()
