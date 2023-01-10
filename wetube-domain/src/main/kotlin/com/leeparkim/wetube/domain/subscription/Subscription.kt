@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne
 
 @Entity
 class Subscription(
-    @ManyToOne(fetch = FetchType.LAZY)
-    val follower: User,
-    @ManyToOne(fetch = FetchType.LAZY)
-    val following: User,
+        @ManyToOne(fetch = FetchType.LAZY)
+        val follower: User,
+        @ManyToOne(fetch = FetchType.LAZY)
+        val following: User,
 ) : BaseEntity()

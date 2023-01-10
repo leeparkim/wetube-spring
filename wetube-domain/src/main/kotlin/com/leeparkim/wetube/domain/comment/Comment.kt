@@ -9,9 +9,9 @@ import javax.persistence.ManyToOne
 
 @Entity
 class Comment(
-    @ManyToOne(fetch = FetchType.LAZY)
-    val video: Video,
-    @ManyToOne
-    val user: User,
-    val content: String,
+        @ManyToOne(fetch = FetchType.LAZY)
+        val video: Video,
+        @ManyToOne
+        val user: User,
+        val content: String,
 ) : BaseEntity()
