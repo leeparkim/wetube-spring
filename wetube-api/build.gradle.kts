@@ -12,6 +12,7 @@ repositories {
 dependencies {
     api(project(":wetube-domain"))
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.amazonaws:aws-java-sdk-s3:1.12.351")
 }
 
 tasks.getByName<Test>("test") {

@@ -1,4 +1,4 @@
-package com.leeparkim.wetube.presentation.application.post.dto
+package com.leeparkim.wetube.presentation.api.post.dto
 
 data class PatchPostReqDTO (
         val title: String,

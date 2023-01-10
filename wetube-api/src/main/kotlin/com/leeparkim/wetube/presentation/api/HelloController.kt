@@ -1,4 +1,4 @@
-package com.leeparkim.wetube.presenter
+package com.leeparkim.wetube.presentation.api
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HelloController {
     @GetMapping("/hello")
-    fun hello(): String = "Hello, acm-api"
+    fun hello(): String = "Hello, wetube-api"
 }

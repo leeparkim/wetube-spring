@@ -1,6 +1,6 @@
-package com.leeparkim.wetube.presentation.application.comment.dto
+package com.leeparkim.wetube.presentation.api.comment.dto
 
-import com.leeparkim.wetube.presentation.application.user.dto.UserResDTO
+import com.leeparkim.wetube.presentation.api.user.dto.UserResDTO
 
 data class CommentResDTO (
         val commentId: Long,

@@ -1,9 +1,9 @@
-package com.leeparkim.wetube.presentation.application.post
+package com.leeparkim.wetube.presentation.api.post
 
 import com.leeparkim.wetube.presentation.ApiResponse
-import com.leeparkim.wetube.presentation.application.post.dto.PatchPostReqDTO
-import com.leeparkim.wetube.presentation.application.post.dto.PostDetailResDTO
-import com.leeparkim.wetube.presentation.application.post.dto.PostResDTO
+import com.leeparkim.wetube.presentation.api.post.dto.PatchPostReqDTO
+import com.leeparkim.wetube.presentation.api.post.dto.PostDetailResDTO
+import com.leeparkim.wetube.presentation.api.post.dto.PostResDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag

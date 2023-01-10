@@ -1,4 +1,4 @@
-package com.leeparkim.wetube.presentation.application.subscription
+package com.leeparkim.wetube.presentation.api.subscription
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter

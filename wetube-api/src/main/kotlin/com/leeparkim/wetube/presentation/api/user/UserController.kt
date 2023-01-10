@@ -1,8 +1,8 @@
-package com.leeparkim.wetube.presentation.application.user
+package com.leeparkim.wetube.presentation.api.user
 
 import com.leeparkim.wetube.presentation.ApiResponse
-import com.leeparkim.wetube.presentation.application.user.dto.UserResDTO
-import com.leeparkim.wetube.presentation.application.user.dto.OtherUserResDTO
+import com.leeparkim.wetube.presentation.api.user.dto.UserResDTO
+import com.leeparkim.wetube.presentation.api.user.dto.OtherUserResDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag

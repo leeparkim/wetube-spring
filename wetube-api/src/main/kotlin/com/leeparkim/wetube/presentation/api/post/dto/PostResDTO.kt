@@ -1,6 +1,6 @@
-package com.leeparkim.wetube.presentation.application.post.dto
+package com.leeparkim.wetube.presentation.api.post.dto
 
-import com.leeparkim.wetube.presentation.application.user.dto.UserResDTO
+import com.leeparkim.wetube.presentation.api.user.dto.UserResDTO
 
 data class PostResDTO(
         val postId: Long,
