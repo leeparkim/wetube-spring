@@ -1,6 +1,6 @@
 package com.leeparkim.wetube.presentation.auth.dto
 
-data class SigninRequestDTO(
+data class SigninRequestDto(
         val accessToken: String,
         val userId: String
 )

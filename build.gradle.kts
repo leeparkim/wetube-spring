@@ -37,6 +37,7 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("org.springframework.boot:spring-boot-starter-security")
         implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
         implementation("javax.inject:javax.inject:1")
         implementation("com.auth0:java-jwt:3.18.1")
         implementation("org.jetbrains.kotlin:kotlin-reflect")

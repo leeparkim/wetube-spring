@@ -3,10 +3,8 @@ package com.leeparkim.wetube.application.auth
 import com.leeparkim.wetube.domain.user.SocialType
 import com.leeparkim.wetube.domain.user.User
 import com.leeparkim.wetube.domain.user.UserRepository
-import com.leeparkim.wetube.presentation.auth.dto.SignInResponseDTO
-import org.springframework.beans.factory.annotation.Autowired
+import com.leeparkim.wetube.presentation.auth.dto.SignInResponseDto
 import org.springframework.stereotype.Service
-import javax.inject.Provider
 
 
 @Service
@@ -39,9 +37,9 @@ class OAuthApplicationService(
         return userRepository.findBySocialIdAndSocialType(socialId, socialType)
     }
 
-    fun getTokenByUser(user: User): SignInResponseDTO {
+    fun getTokenByUser(user: User): SignInResponseDto {
         val accessToken = tokenService.encode(user.id)
-        return SignInResponseDTO(accessToken)
+        return SignInResponseDto(accessToken)
     }
 
     fun createUser(socialUserId: String, socialLoginType: String, email: String): User {

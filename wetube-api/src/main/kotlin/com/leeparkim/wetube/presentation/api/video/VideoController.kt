@@ -1,4 +1,4 @@
-package com.leeparkim.wetube.presenter.api.video
+package com.leeparkim.wetube.presentation.api.video
 
 import com.leeparkim.wetube.infrastructure.file.FileUploader
 import org.springframework.http.MediaType

@@ -33,6 +33,8 @@ class SecurityConfig(val objectMapper: ObjectMapper) {
                 .authorizeRequests()
                 .antMatchers("/signin/**").permitAll()
                 .antMatchers("/api/signin/**").permitAll()
+                .antMatchers("/api-docs/**").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().hasRole(ROLE_USER)
         http.csrf().disable()

@@ -1,4 +1,4 @@
-package com.leeparkim.wetube.presenter
+package com.leeparkim.wetube.presentation.api
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
