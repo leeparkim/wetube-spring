@@ -18,6 +18,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("mysql:mysql-connector-java")
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")

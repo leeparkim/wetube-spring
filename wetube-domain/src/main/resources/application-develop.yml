@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://wetube-public-db.ce8ks8bvrmly.ap-northeast-2.rds.amazonaws.com:3306/wetube?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: ENC(h4LbbuMTprf1u27kOPOdvVR1xmOBZ0LpffP0w9idMMOUiWt5AC8fLSxUkD0aT7Cl)
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
