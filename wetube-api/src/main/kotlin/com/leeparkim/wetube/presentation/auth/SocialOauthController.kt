@@ -1,8 +1,8 @@
 package com.leeparkim.wetube.presentation.auth
 
 import com.leeparkim.wetube.application.auth.OAuthApplicationService
-import com.leeparkim.wetube.presentation.auth.dto.SignInResponseDTO
-import com.leeparkim.wetube.presentation.auth.dto.SigninRequestDTO
+import com.leeparkim.wetube.presentation.auth.dto.SignInResponseDto
+import com.leeparkim.wetube.presentation.auth.dto.SigninRequestDto
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
@@ -19,7 +19,7 @@ class SocialOauthController(private val oAuthService: OAuthApplicationService) {
 
     @ResponseBody
     @GetMapping("/signin/social/{socialType}/form/callback")
-    fun socialCallback(@PathVariable(name = "socialType") socialTypeString: String, code: String): SignInResponseDTO {
+    fun socialCallback(@PathVariable(name = "socialType") socialTypeString: String, code: String): SignInResponseDto {
         val socialToken = oAuthService.getSocialToken(socialTypeString, code)
                 ?: throw IllegalStateException("Invalid response from Google API")
         val (socialUserId, email) = oAuthService.getSocialUserIdAndEmail(socialTypeString, socialToken)
@@ -34,7 +34,7 @@ class SocialOauthController(private val oAuthService: OAuthApplicationService) {
     @ResponseBody
     @PostMapping("/api/signin/social/{socialType}")
     fun socialLogin(@PathVariable(name = "socialType") socialTypeString: String,
-                    @RequestBody signinRequest: SigninRequestDTO): SignInResponseDTO {
+                    @RequestBody signinRequest: SigninRequestDto): SignInResponseDto {
 
         val (socialUserId, email) = oAuthService.getSocialUserIdAndEmail(socialTypeString, signinRequest.accessToken)
                 ?: throw IllegalStateException("User not found")

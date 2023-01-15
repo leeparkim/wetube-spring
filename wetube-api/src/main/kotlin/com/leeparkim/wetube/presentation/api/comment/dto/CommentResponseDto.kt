@@ -1,10 +1,10 @@
 package com.leeparkim.wetube.presentation.api.comment.dto
 
-import com.leeparkim.wetube.presentation.api.user.dto.UserResDTO
+import com.leeparkim.wetube.presentation.api.user.dto.UserResponseDto
 
-data class CommentResDTO (
+data class CommentResponseDto (
         val commentId: Long,
-        val author: UserResDTO,
+        val author: UserResponseDto,
         val likes: Long,
         val content: String,
         val createdAt: String

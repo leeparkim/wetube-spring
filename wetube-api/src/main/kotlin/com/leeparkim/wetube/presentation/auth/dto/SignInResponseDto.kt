@@ -1,5 +1,5 @@
 package com.leeparkim.wetube.presentation.auth.dto
 
-data class SignInResponseDTO(
+data class SignInResponseDto(
         val accessToken: String
 )

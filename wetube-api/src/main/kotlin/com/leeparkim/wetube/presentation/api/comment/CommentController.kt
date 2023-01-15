@@ -1,8 +1,8 @@
 package com.leeparkim.wetube.presentation.api.comment
 
 import com.leeparkim.wetube.presentation.ApiResponse
-import com.leeparkim.wetube.presentation.api.comment.dto.CommentResDTO
-import com.leeparkim.wetube.presentation.api.comment.dto.PostCommentReqDTO
+import com.leeparkim.wetube.presentation.api.comment.dto.CommentResponseDto
+import com.leeparkim.wetube.presentation.api.comment.dto.PostCommentRequestDto
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "댓긇", description = "댓글 관련 api")
+@Tag(name = "댓글", description = "댓글 관련 api")
 @RestController
 @RequestMapping("/api")
 class CommentController {
@@ -26,7 +26,7 @@ class CommentController {
     @PostMapping("/post/{postId}/comment")
     fun postComment(@PathVariable postId: Long,
                     @Parameter(hidden = true) @ModelAttribute userId: Long,
-                    @RequestBody postCommentReq: PostCommentReqDTO) {
+                    @RequestBody postCommentReq: PostCommentRequestDto) {
 
     }
 
@@ -41,21 +41,21 @@ class CommentController {
     @PatchMapping("/comment/{commentId}")
     fun patchComment(@PathVariable commentId: Long,
                      @Parameter(hidden = true) @ModelAttribute userId: Long,
-                     @RequestBody postCommentReq: PostCommentReqDTO) {
+                     @RequestBody postCommentReq: PostCommentRequestDto) {
 
     }
 
     @Operation(summary = "나의 댓글 확인 API")
     @GetMapping("/me/comments")
     fun getMyComments(pageable: Pageable,
-                      @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<Array<CommentResDTO>> {
+                      @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<Array<CommentResponseDto>> {
         return ApiResponse.success()
     }
 
     @Operation(summary = "Post의 댓글 확인 API")
     @GetMapping("/post/{postId}/comments")
     fun getPostComments(@PathVariable postId: Long,
-                        pageable: Pageable): ApiResponse<Array<CommentResDTO>> {
+                        pageable: Pageable): ApiResponse<Array<CommentResponseDto>> {
         return ApiResponse.success()
     }
 }

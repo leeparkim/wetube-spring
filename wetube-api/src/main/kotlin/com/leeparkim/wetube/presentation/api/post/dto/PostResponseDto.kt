@@ -1,10 +1,10 @@
 package com.leeparkim.wetube.presentation.api.post.dto
 
-import com.leeparkim.wetube.presentation.api.user.dto.UserResDTO
+import com.leeparkim.wetube.presentation.api.user.dto.UserResponseDto
 
-data class PostResDTO(
+data class PostResponseDto(
         val postId: Long,
-        val author: UserResDTO,
+        val author: UserResponseDto,
         val title: String,
         val createdAt: String,
         val thumbnailImg: String,

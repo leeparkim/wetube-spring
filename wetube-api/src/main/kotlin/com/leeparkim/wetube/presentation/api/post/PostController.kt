@@ -1,9 +1,9 @@
 package com.leeparkim.wetube.presentation.api.post
 
 import com.leeparkim.wetube.presentation.ApiResponse
-import com.leeparkim.wetube.presentation.api.post.dto.PatchPostReqDTO
-import com.leeparkim.wetube.presentation.api.post.dto.PostDetailResDTO
-import com.leeparkim.wetube.presentation.api.post.dto.PostResDTO
+import com.leeparkim.wetube.presentation.api.post.dto.PatchPostRequestDto
+import com.leeparkim.wetube.presentation.api.post.dto.PostDetailResponseDto
+import com.leeparkim.wetube.presentation.api.post.dto.PostResponseDto
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.*
 class PostController {
     @Operation(summary = "동영상 리스트 API")
     @GetMapping
-    fun getPostList(pageable: Pageable): ApiResponse<Array<PostResDTO>> {
+    fun getPostList(pageable: Pageable): ApiResponse<Array<PostResponseDto>> {
         return ApiResponse.success()
     }
 
     @Operation(summary = "동영상 세부정보 API")
     @GetMapping("/{postId}")
     fun getPostDetail(@PathVariable postId: String,
-                      @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<PostDetailResDTO> {
+                      @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<PostDetailResponseDto> {
         return ApiResponse.success()
     }
 
@@ -36,7 +36,7 @@ class PostController {
     @PatchMapping("/{postId}")
     fun patchVideo(@PathVariable postId: String,
                    @Parameter(hidden = true) @ModelAttribute userId: Long,
-                   @RequestBody patchPostReq: PatchPostReqDTO) {
+                   @RequestBody patchPostReq: PatchPostRequestDto) {
     }
 
     @Operation(summary = "동영상 내용 삭제 API")
@@ -49,7 +49,15 @@ class PostController {
     @GetMapping("/search")
     fun searchVideo(@RequestParam query: String,
                     pageable: Pageable,
-                    @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<Array<PostResDTO>> {
+                    @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<Array<PostResponseDto>> {
+        return ApiResponse.success()
+    }
+
+    @Operation(summary = "유저의 동영상 API")
+    @GetMapping("/user/{targetUserId}")
+    fun getUserVideo(@PathVariable targetUserId: String,
+                     pageable: Pageable,
+                     @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<Array<PostResponseDto>> {
         return ApiResponse.success()
     }
 }
