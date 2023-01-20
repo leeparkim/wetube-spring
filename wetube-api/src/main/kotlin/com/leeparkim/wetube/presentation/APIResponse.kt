@@ -1,6 +1,7 @@
 package com.leeparkim.wetube.presentation
 
 import com.leeparkim.wetube.domain.ResultCode
+import org.apache.http.HttpStatus
 
 data class ApiResponse<T>(
         val code: String,
