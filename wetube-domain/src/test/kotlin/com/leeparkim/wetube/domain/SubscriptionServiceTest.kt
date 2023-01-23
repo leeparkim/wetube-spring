@@ -60,11 +60,19 @@ class SubscriptionServiceTest {
         subscriptionService.createSubscription(Subscription(user1.id, user4.id))
 
         // when
-        val followers = subscriptionService.getFollowers(user1.id, PageRequest.of(0, 10))
-        val followings = subscriptionService.getFollowers(user1.id, PageRequest.of(0, 10))
+        var followers = subscriptionService.getFollowers(user1.id, PageRequest.of(0, 10))
+        var followings = subscriptionService.getFollowers(user1.id, PageRequest.of(0, 10))
 
         // then
         assertEquals(followers.content.size, 3)
         assertEquals(followings.content.size, 3)
+
+        // when
+        followers = subscriptionService.getFollowers(user1.id, PageRequest.of(0, 2))
+        followings = subscriptionService.getFollowers(user1.id, PageRequest.of(0, 2))
+
+        // then
+        assertEquals(followers.content.size, 2)
+        assertEquals(followings.content.size, 2)
     }
 }

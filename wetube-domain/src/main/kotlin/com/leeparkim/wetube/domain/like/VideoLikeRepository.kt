@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface VideoLikeRepository: JpaRepository<VideoLike, Long> {
     fun countByVideoId(videoId: Long): Long
-    fun findByUserIdAnAndVideoIdOrNull(userId: Long, videoId: Long): VideoLike?
+    fun findByUserIdAndVideoId(userId: Long, videoId: Long): VideoLike?
 }

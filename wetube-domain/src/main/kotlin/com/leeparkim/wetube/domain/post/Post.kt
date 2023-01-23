@@ -14,8 +14,9 @@ class Post(
         val video: Video,
         val content: String,
         val title: String,
-        val view: Long,
+        val view: Long = 0,
         val thumbnailImg: String,
         @ManyToOne(fetch = FetchType.LAZY)
         val user: User,
+        val likes: Long = 0
 ) : BaseEntity()

@@ -1,5 +1,6 @@
 package com.leeparkim.wetube.presentation.api.like
 
+import com.leeparkim.wetube.application.like.LikeApplicationService
 import com.leeparkim.wetube.presentation.ApiResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter

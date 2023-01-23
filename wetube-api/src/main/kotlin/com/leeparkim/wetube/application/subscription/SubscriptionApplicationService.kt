@@ -18,11 +18,7 @@ class SubscriptionApplicationService(private val subscriptionService: Subscripti
     fun getFollowers(userId: Long, pageable: Pageable): Page<SubscriptionResponseDto> {
         return subscriptionService.getFollowers(userId, pageable).map {
             SubscriptionResponseDto(
-                    user = UserResponseDto(
-                            id = it.follower!!.id,
-                            username = it.follower!!.username,
-                            profileUrl = it.follower!!.profileUrl,
-                    ),
+                    user = UserResponseDto.toDto(it.follower),
                     followerId = it.followerId,
                     followingId = it.followingId
             )
@@ -32,11 +28,7 @@ class SubscriptionApplicationService(private val subscriptionService: Subscripti
     fun getFollowings(userId: Long, pageable: Pageable): Page<SubscriptionResponseDto> {
         return subscriptionService.getFollowings(userId, pageable).map {
             SubscriptionResponseDto(
-                    user = UserResponseDto(
-                            id = it.following!!.id,
-                            username = it.following!!.username,
-                            profileUrl = it.following!!.profileUrl,
-                    ),
+                    user = UserResponseDto.toDto(it.following),
                     followerId = it.followerId,
                     followingId = it.followingId
             )

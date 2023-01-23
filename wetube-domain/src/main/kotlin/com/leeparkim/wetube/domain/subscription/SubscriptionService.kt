@@ -12,6 +12,7 @@ class SubscriptionService(private val subscriptionRepository: SubscriptionReposi
         return subscriptionRepository.existsByFollowerIdAndFollowingId(followerId, followingId)
     }
 
+    @Transactional
     fun createSubscription(subscription: Subscription) {
         subscriptionRepository.save(subscription)
     }
