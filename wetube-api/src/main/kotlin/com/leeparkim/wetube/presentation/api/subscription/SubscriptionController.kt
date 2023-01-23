@@ -17,8 +17,10 @@ class SubscriptionController(private val subscriptionApplicationService: Subscri
     @Operation(summary = "구독 추가/삭제 API", description = "구독이 안눌린 상태에서는 추가, 구독이 눌린 상태에서는 삭제")
     @PostMapping("/user/{targetUserId}/subscription")
     fun postSubscription(@PathVariable targetUserId: Long,
-                         @Parameter(hidden = true) @ModelAttribute userId: Long) {
+                         @Parameter(hidden = true) @ModelAttribute userId: Long): ApiResponse<Unit> {
         subscriptionApplicationService.createSubscription(userId, targetUserId)
+        return ApiResponse.success()
+
     }
 
     @Operation(summary = "구독자 List API", description = "Target user의 구독자를 보여주는 API")
