@@ -1,6 +1,7 @@
 package com.leeparkim.wetube.presentation
 
 import com.leeparkim.wetube.domain.ResultCode
+import org.apache.http.HttpStatus
 
 data class ApiResponse<T>(
         val code: String,
@@ -13,6 +14,8 @@ data class ApiResponse<T>(
         }
 
         fun <T> success() = ApiResponse<T>(ResultCode.SUCCESS.name, ResultCode.SUCCESS.message, null)
+
+        fun <T> success(status: HttpStatus) = ApiResponse<T>(ResultCode.SUCCESS.name, ResultCode.SUCCESS.message, null)
 
         fun <T> success(data: T) = ApiResponse(ResultCode.SUCCESS.name, ResultCode.SUCCESS.message, data)
 

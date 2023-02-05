@@ -1,17 +1,27 @@
 package com.leeparkim.wetube.domain.comment
 
 import com.leeparkim.wetube.domain.BaseEntity
+import com.leeparkim.wetube.domain.post.Post
 import com.leeparkim.wetube.domain.user.User
-import com.leeparkim.wetube.domain.video.Video
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 class Comment(
-        @ManyToOne(fetch = FetchType.LAZY)
-        val video: Video,
-        @ManyToOne
-        val user: User,
-        val content: String,
+        @Column(name = "user_id")
+        val userId: Long,
+
+        @Column(name = "post_id")
+        val postId: Long,
+
+        var content: String,
+
+        @ManyToOne(targetEntity = User::class, fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", insertable = false, updatable = false)
+        val user: User? = null,
+
+        @ManyToOne(targetEntity = Post::class, fetch = FetchType.LAZY)
+        @JoinColumn(name = "post_id", insertable = false, updatable = false)
+        val post: Post? = null,
+
+        var likes: Long = 0
 ) : BaseEntity()

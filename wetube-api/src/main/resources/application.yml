@@ -13,9 +13,9 @@ spring:
   OAuth2:
     google:
       url: https://accounts.google.com/o/oauth2/v2/auth
-      client-id: 555871325858-vg3s040vuv5drcf4fl2q20tnda2p2tst.apps.googleusercontent.com
+      client-id: ${GOOGLE_API_CLIENT_ID}
       callback-url: http://localhost:8080/signin/social/google/form/callback
-      client-secret: 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
+      client-secret: ${GOOGLE_API_CLIENT_SECRET}
       scope: https://www.googleapis.com/auth/userinfo.email
 
 cloud:
